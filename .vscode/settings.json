@@ -1,0 +1,17 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "lemon",
+            "database": "${workspaceFolder:finalprg}/little_lemon.db"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "SQLite",
+            "database": "${workspaceFolder:finalprg}/assets/www/sqlite.db"
+        }
+    ]
+}

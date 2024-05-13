@@ -24,7 +24,6 @@ const RootNavigator = () => {
   });
 
   const loadApp = async () => {
-    console.log("In loading app", fontLoaded);
     if (!fontLoaded) return;
     try {
       const user = await AsyncStorage.getItem("user");
@@ -37,7 +36,6 @@ const RootNavigator = () => {
         setIsLoading(false);
         return;
       }
-      console.log("Checking For items");
       await checkMenuTableAndPopulateData();
       setIsLoading(false);
     } catch (error) {

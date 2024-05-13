@@ -15,6 +15,7 @@ import CustomButton from "../components/HOC/CustomButton";
 import CheckBoxSection from "../components/Profile/CheckboxSection";
 import Avatar from "../components/Avatar/Avatar";
 import resetApp from "../utils/resetApp";
+import {  deleteUser, getPhoneNumber, checkDBUserExist, insertUser, updateUserInDB } from "../database";
 
 const initalNotificationPrefState = {
   orderStatus: true,
@@ -28,6 +29,7 @@ export default function ProfileScreen({ navigation }) {
   const [lastName, setLastName] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [email, setEmail] = useState(null);
+   const [exist, setExist] = useState(null);
   const [notificationPref, setNotificationPref] = useState(
     initalNotificationPrefState
   );
@@ -46,6 +48,14 @@ export default function ProfileScreen({ navigation }) {
     setNotificationPref(notificationPref || initalNotificationPrefState);
   };
 
+  const userExist = async(email) => {
+      checkDBUserExist(email)
+      .then(rows => {
+        let exist = JSON.stringify(rows);
+        setExist(exist);
+       });
+  }
+
   const loadProfileData = async () => {
     try {
       const jsonString = await AsyncStorage.getItem("user");
@@ -63,6 +73,7 @@ export default function ProfileScreen({ navigation }) {
     return phonePattern.test(string);
   };
 
+
   const saveProfileChanges = async () => {
     if (!isValidPhoneNumber(phoneNumber)) {
       alert("Invalid phone number");
@@ -77,16 +88,42 @@ export default function ProfileScreen({ navigation }) {
         phoneNumber,
         notificationPref,
       });
-      navigateToHomeScreen();
+
+     if(exist == 0)
+      {
+       insertUser(firstName, lastName, email, phoneNumber);
+       setExist(1);
+     }
+     else
+     {
+        updateUserInDB(firstName, lastName, phoneNumber, email);
+        setExist(1);
+        navigateToHomeScreen();
+     }
     } catch (error) {
       alert("Error saving profile changes");
       console.error(error);
     }
+
   };
 
   const discardProfileChanges = async () => {
     loadProfileData();
-    alert("Changes discarded");
+    deleteUser(email);
+    setFirstName(null);
+    setLastName(null);
+    setEmail(null);
+    setPhoneNumber(null);
+     updateUser({
+           firstName,
+           lastName,
+           email,
+           phoneNumber,
+           notificationPref,
+         });
+
+    alert("Account discarded");
+    logOut();
   };
 
   const changeNotificationPref = (key, value) => {
@@ -96,7 +133,13 @@ export default function ProfileScreen({ navigation }) {
   const navigateToHomeScreen = () => navigation.replace("Home");
 
   useEffect(() => {
-    loadProfileData();
+    loadProfileData()
+         .then(() => {
+           userExist(user.email);
+            if(exist == 1)
+              console.log("phoneNumber from Profile Screen = "+phoneNumber);
+            });
+
   }, []);
 
   return (
@@ -192,7 +235,7 @@ export default function ProfileScreen({ navigation }) {
             }}
           >
             <CustomButton
-              text="Discard Changes"
+              text="Delete Account"
               onPress={discardProfileChanges}
               style={{
                 backgroundColor: "rgba(0, 0, 0, 0)",

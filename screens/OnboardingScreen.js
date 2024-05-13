@@ -5,37 +5,63 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { colors } from "../constants/color";
 import HeroSection from "../components/Hero";
 import { useNavigation } from "@react-navigation/native";
+import {  getPhoneNumber, checkDBUserExist, getUserDetails } from "../database";
 
 export default function Onboard() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const { setOnboardingCompleted, updateUser } = useContext(AppContext);
+  const [exist, setExist] = useState();
 
   const nav = useNavigation();
 
   useEffect(() => {
     const nameValid = name?.length > 3;
     const emailValid = email?.length > 6 && email?.includes("@");
-
     if (nameValid && emailValid) setIsButtonDisabled(false);
     else setIsButtonDisabled(true);
+
   }, [email, name]);
+
 
   const [firstName, lastName] = name.split(" ");
 
-  const user = { firstName, lastName, email };
+  const user = { firstName, lastName, email, phoneNumber };
+
+  const userExist = async(email) => {
+          let exst = 0;
+          checkDBUserExist(email)
+          .then(rows => {
+          try {
+            exst = JSON.stringify(rows);
+            setExist(exst);
+            } catch (error) {
+              console.error("ERROR in setExist ", error);
+            }
+       })
+}
 
   const onNextPress = async () => {
     try {
-      await AsyncStorage.setItem("user", JSON.stringify(user));
-      updateUser({ firstName, lastName, email });
-      setOnboardingCompleted(true);
-      nav.replace("Profile");
+      const phoneNumber = getPhoneNumber(email)
+      const userDetails = getUserDetails(email)
+      .then((userInfo) => {
+          user.phoneNumber = userInfo.phoneNumber;
+          user.lastName = userInfo.lastName;
+          AsyncStorage.setItem("user", JSON.stringify(user));
+          updateUser(user)
+          .then(() => {
+           setOnboardingCompleted(true);
+           nav.replace("Profile");
+           });
+      });
     } catch (error) {
       console.error("ERROR", error);
     }
+
   };
 
   return (

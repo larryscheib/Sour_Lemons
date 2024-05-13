@@ -10,6 +10,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Header from "../components/Header/Header";
 import Avatar from "../components/Avatar/Avatar";
 import { checkMenuTableAndPopulateData, selectAllMenu } from "../database";
+import { checkMenuTableAndPopulateData, selectAllMenu } from "../database";
 import * as Font from "expo-font";
 
 const RootNavigator = () => {
