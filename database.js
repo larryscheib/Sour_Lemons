@@ -100,6 +100,7 @@ const checkMenuTableAndPopulateData = async () => {
 };
 
 const filterMenuItems = (categories, searchInput) => {
+
   return new Promise((resolve, reject) => {
     try {
       const queryArray = [];
@@ -107,14 +108,16 @@ const filterMenuItems = (categories, searchInput) => {
         queryArray.push(`LOWER(name) LIKE '%${searchInput.toLowerCase()}%'`);
       }
       if (categories.length) {
+
         for (const catagory of categories) {
           queryArray.push(`category='${catagory.toLowerCase()}'`);
         }
       }
       const queryString = queryArray.length
-        ? "where " + queryArray.join(" AND ")
+        ? "where " + queryArray.join(" OR ")
         : "";
       const finalQuery = `select * from menu ${queryString};`;
+
       db.transaction(
         (tx) => {
           tx.executeSql(finalQuery, [], (_, { rows }) => {
@@ -150,9 +153,11 @@ function createTable () {
 
          if(email != null)
           {
+          console.log("checkForUser  email = "+email);
           const ct = createTable();
-          const usrExist = checkDBUserExist(email);
-          return usrExist;
+           const usrExist = checkDBUserExist(email);
+           console.log("checkForUser usrExist = "+JSON.stringify(usrExist));
+            return usrExist;
               }
            else
               return 0;
@@ -169,12 +174,13 @@ function createTable () {
             tx.executeSql("select count(*) as cnt from user where email = ?",
               [email],
               async (tx, results) => {
-                   var len = JSON.stringify(results.rows._array[0].cnt);
-                   var a = 0;
+                    var len = JSON.stringify(results.rows._array[0].cnt);
+                    var a = 0;
                       if (len > 0)
                         a = 1;//There will be an async function for setting like that
                        else
                         a = 0;
+                     console.log("checkDBUserExist exist "+a);
                      return resolve(a)
              });
           });
@@ -183,9 +189,12 @@ function createTable () {
 
 const insertUser = (firstName, lastName, email, phoneNumber) => {
 
+  console.log("insertUser user.email = "+email);
+  console.log("insert phone = "+phoneNumber);
  return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       try {
+        console.log("tx.executeSql insert of new user")
         tx.executeSql(
           "insert into user (firstName,lastName,email,phoneNumber) values (?,?,?,?)",
           [firstName, lastName, email, phoneNumber]
@@ -215,7 +224,38 @@ const updateUserInDB = (firstName, lastName, phoneNumber, email) => {
     });
   };
 
-  const deleteUser = (email) => {
+
+
+const getUserDetails = (email)  => {
+
+ return new Promise((resolve, reject) => {
+     db.transaction((tx) => {
+         tx.executeSql("select phoneNumber, lastName from user where email = ?",
+           [email],
+            async (tx, results) => {
+                 var len = results.rows.length;
+                 var userDetail=null;
+                 let last = null;
+                 let phone = null;
+                var userDetail = {phoneNumber:"", lastName:""};
+                if(len > 0)
+                {
+                  phone = results.rows.item(0).phoneNumber;
+                  last = results.rows.item(0).lastName;
+                  userDetail =
+                  {
+                      phoneNumber:phone,
+                      lastName:last
+                  }
+                }
+                return resolve(userDetail);
+
+              });
+     });
+     });
+};
+
+ const deleteUser = (email) => {
 
    return new Promise((resolve, reject) => {
       db.transaction((tx) => {
@@ -232,56 +272,6 @@ const updateUserInDB = (firstName, lastName, phoneNumber, email) => {
       });
     };
 
-const getPhoneNumber = (email)  => {
- let phone;
- return new Promise((resolve, reject) => {
-     db.transaction((tx) => {
-         tx.executeSql("select phoneNumber from user where email = ?",
-           [email],
-            async (tx, results) => {
-                 var len = results.rows.length;
-                 console.log("len = "+len);
-                   var phone = null;
-                   if(len > 0)
-                   {
-                      phone = results.rows.item(0).phoneNumber;
-                   }
-                   return resolve(phone);
-
-              });
-     });
-     });
-};
-
-const getUserDetails = (email)  => {
- let phone;
- return new Promise((resolve, reject) => {
-     db.transaction((tx) => {
-         tx.executeSql("select phoneNumber, lastName from user where email = ?",
-           [email],
-            async (tx, results) => {
-                 var len = results.rows.length;
-                 var userDetail=null;
-                 let last = null;
-                 let phone = null;
-                   var userDetail = {phoneNumber:"", lastName:""};
-                   if(len > 0)
-                   {
-                     phone = results.rows.item(0).phoneNumber;
-                     last = results.rows.item(0).lastName;
-                     userDetail =
-                      {
-                         phoneNumber:phone,
-                         lastName:last
-                      }
-                   }
-                   return resolve(userDetail);
-
-              });
-     });
-     });
-};
-
 export {
   filterMenuItems,
   selectAllMenu,
@@ -293,7 +283,6 @@ export {
   checkDBUserExist,
   insertUser,
   updateUserInDB,
-  getPhoneNumber,
   getUserDetails,
   deleteUser,
 };
