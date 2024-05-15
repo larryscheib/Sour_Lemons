@@ -5,57 +5,54 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { colors } from "../constants/color";
 import HeroSection from "../components/Hero";
 import { useNavigation } from "@react-navigation/native";
-import {  getPhoneNumber, checkDBUserExist, getUserDetails } from "../database";
+
+import {  checkDBUserExist, getUserDetails } from "../database";
 
 export default function Onboard() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhone] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const { setOnboardingCompleted, updateUser } = useContext(AppContext);
   const [exist, setExist] = useState();
-
   const nav = useNavigation();
 
   useEffect(() => {
     const nameValid = name?.length > 3;
     const emailValid = email?.length > 6 && email?.includes("@");
+
     if (nameValid && emailValid) setIsButtonDisabled(false);
     else setIsButtonDisabled(true);
-
   }, [email, name]);
-
 
   const [firstName, lastName] = name.split(" ");
 
   const user = { firstName, lastName, email, phoneNumber };
 
-  const userExist = async(email) => {
-          let exst = 0;
-          checkDBUserExist(email)
-          .then(rows => {
-          try {
-            exst = JSON.stringify(rows);
-            setExist(exst);
-            } catch (error) {
-              console.error("ERROR in setExist ", error);
-            }
-       })
-}
 
-  const onNextPress = async () => {
+const onNextPress = async () => {
     try {
-      const phoneNumber = getPhoneNumber(email)
       const userDetails = getUserDetails(email)
       .then((userInfo) => {
+
           user.phoneNumber = userInfo.phoneNumber;
           user.lastName = userInfo.lastName;
+          let phoneLength = 0;
+          
+          if(user.phoneNumber != null)
+            phoneLength = userInfo.phoneNumber.length; 
+
           AsyncStorage.setItem("user", JSON.stringify(user));
+ 
           updateUser(user)
           .then(() => {
            setOnboardingCompleted(true);
-           nav.replace("Profile");
+
+           if(phoneLength > 0)
+                nav.replace("Home");
+            else
+              nav.replace("Profile");
            });
       });
     } catch (error) {
@@ -63,6 +60,7 @@ export default function Onboard() {
     }
 
   };
+
 
   return (
     <View style={styles.container}>

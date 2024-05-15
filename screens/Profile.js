@@ -15,7 +15,7 @@ import CustomButton from "../components/HOC/CustomButton";
 import CheckBoxSection from "../components/Profile/CheckboxSection";
 import Avatar from "../components/Avatar/Avatar";
 import resetApp from "../utils/resetApp";
-import {  deleteUser, getPhoneNumber, checkDBUserExist, insertUser, updateUserInDB } from "../database";
+import {  deleteUser, checkDBUserExist, insertUser, updateUserInDB } from "../database";
 
 const initalNotificationPrefState = {
   orderStatus: true,
@@ -55,6 +55,8 @@ export default function ProfileScreen({ navigation }) {
         setExist(exist);
        });
   }
+
+
 
   const loadProfileData = async () => {
     try {
@@ -98,8 +100,8 @@ export default function ProfileScreen({ navigation }) {
      {
         updateUserInDB(firstName, lastName, phoneNumber, email);
         setExist(1);
-        navigateToHomeScreen();
      }
+      navigateToHomeScreen();
     } catch (error) {
       alert("Error saving profile changes");
       console.error(error);
@@ -135,9 +137,7 @@ export default function ProfileScreen({ navigation }) {
   useEffect(() => {
     loadProfileData()
          .then(() => {
-           userExist(user.email);
-            if(exist == 1)
-              console.log("phoneNumber from Profile Screen = "+phoneNumber);
+            userExist(user.email);
             });
 
   }, []);
@@ -235,7 +235,7 @@ export default function ProfileScreen({ navigation }) {
             }}
           >
             <CustomButton
-              text="Delete Account"
+              text="Delete User"
               onPress={discardProfileChanges}
               style={{
                 backgroundColor: "rgba(0, 0, 0, 0)",
@@ -243,7 +243,10 @@ export default function ProfileScreen({ navigation }) {
               }}
               textStyle={{ color: colors.BLACK }}
             />
-            <CustomButton text="Save Changes" onPress={saveProfileChanges} />
+            <CustomButton
+                text="Save Changes"
+                onPress={saveProfileChanges}
+             />
           </View>
           <CustomButton
             text="RESET APP"

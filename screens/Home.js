@@ -40,19 +40,24 @@ export default function HomeScreen({ navigation }) {
     loadMenu();
   }, []);
 
-  const onFilterClick = (item) => {
+  const onFilterClick = (item, isSelected) => {
+
     const indexOfItem = activeFilters.indexOf(item);
+
     if (indexOfItem > -1) {
       const newActiveFilters = activeFilters.filter(
         (_, index) => index !== indexOfItem
       );
+  
       setActiveFilters(newActiveFilters);
     } else {
       setActiveFilters((activeFilters) => [...activeFilters, item]);
     }
+
   };
 
   const filterMenu = () =>
+  
     filterMenuItems(activeFilters, searchInput).then(setMenuItems);
 
   useEffect(() => {
@@ -80,7 +85,7 @@ export default function HomeScreen({ navigation }) {
                   backgroundColor: isSelected ? colors.GREEN : colors.GRAY,
                 }}
                 key={index}
-                onPress={() => onFilterClick(item)}
+                onPress={() => onFilterClick(item, isSelected)}
               >
                 <Text
                   style={{
