@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useState } from "react";
 
 const AppContext = createContext();
+//export default AppContext = React.createContext();
 export default AppContext;
 
 export const AppProvider = ({ children }) => {
@@ -36,10 +37,16 @@ export const AppProvider = ({ children }) => {
   };
 
   const updateUser = async (userObject) => {
+
+
     if (userObject) {
       const user = (await AsyncStorage.getItem("user")) || {};
+
+  
+
       const updatedUser = { ...JSON.parse(user), ...userObject };
       await AsyncStorage.setItem("user", JSON.stringify(updatedUser));
+
       setGlobalState((prev) => ({
         ...prev,
         ...{ user: updatedUser },
