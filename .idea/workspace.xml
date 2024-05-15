@@ -10,62 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5483771a-8cef-4bc2-8b05-3a310831e77d" name="Changes" comment="Little Lemon Capstone Completion">
-      <change afterPath="$PROJECT_DIR$/.expo/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/devices.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/assert/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/async_hooks/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/buffer/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/child_process/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/cluster/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/console/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/constants/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/crypto/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/dgram/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/diagnostics_channel/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/dns/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/domain/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/events/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/fs/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/fs/promises/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/http/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/http2/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/https/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/inspector/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/module/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/net/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/os/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/path/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/perf_hooks/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/process/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/punycode/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/querystring/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/readline/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/repl/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/stream/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/string_decoder/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/timers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/tls/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/trace_events/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/tty/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/url/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/util/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/v8/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/vm/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/wasi/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/worker_threads/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/externals/zlib/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/polyfill.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/polyfill.native.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/shims/react-native-web/dist/cjs/exports/AppRegistry/AppContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/shims/react-native-web/dist/cjs/exports/BackHandler/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/shims/react-native-web/dist/exports/AppRegistry/AppContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/metro/shims/react-native-web/dist/exports/BackHandler/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.expo/web/cache/production/images/favicon/favicon-24272cdaeff82cc5facdaccd982a6f05b60c4504704bbf94c19a6388659880bb-contain-transparent/favicon-48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +21,9 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\schei\.android\avd\Pixel_3_API_32.avd]" />
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="origin/master" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -103,24 +50,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "AnalyzeApkAction.lastApkPath": "C:/finalprg",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "Sour__Lemons__Branch",
-    "last_opened_file_path": "C:/finalprg",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.25172412",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;AnalyzeApkAction.lastApkPath&quot;: &quot;C:/finalprg&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Sour__Lemons__Branch&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/finalprg&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.25172412&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\finalprg\navigators" />
@@ -238,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715732697086</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Little Lemon Capstone Completion">
+      <option name="closed" value="true" />
+      <created>1715734231526</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715734231526</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
